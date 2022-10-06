@@ -15,8 +15,8 @@
 
 Необходимо запусть скрипт с параметром -link и передать ссылку в формате https://example.ru
 Результатом работы будет короткая ссылка, которую сгенирирует сервис
-<p class="has-line-data" data-line-start="0" data-line-end="2">MacBook-Air-Egor:API_Lesson_3 odins$ python <a href="http://main.py">main.py</a> -link <a href="https://dvmn.org">https://dvmn.org</a><br>
-<a href="https://bit.ly/3yoRce5">https://bit.ly/3yoRce5</a></p>
+<pre class="hljs" style="display: block; overflow-x: auto; padding: 0.5em; background-color: rgb(240, 240, 240); color: rgb(68, 68, 68);">MacBook-Air-<span class="hljs-string" style="color: rgb(136, 0, 0);">Egor:</span>API_Lesson_3 odins$ python main.py -link <span class="hljs-string" style="color: rgb(136, 0, 0);">https:</span><span class="hljs-comment" style="color: rgb(136, 136, 136);">//dvmn.org</span>
+<span class="hljs-string" style="color: rgb(136, 0, 0);">https:</span><span class="hljs-comment" style="color: rgb(136, 136, 136);">//bit.ly/3yoRce5</span></pre>
 
 
 Python3 должен быть уже установлен. Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей:
