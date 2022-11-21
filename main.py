@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from urlparse import urlparse
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 import argparse
 
@@ -49,13 +49,13 @@ def main():
     if args.link:
         link = args.link
     else:
-        link = raw_input("Input link - ")
+        link = input("Input link - ")
     token = os.getenv('BITLY_TOKEN')
     link_components = urlparse(link)
-    link_components = link_components.netloc + link_components.path
+    link_components = f"{link_components.netloc}{link_components.path}"
     if is_bitlink(link_components, token):
         try:
-            print("count clicks " + str(count_clicks(link_components, token)))
+            print(f"Кол-во кликов - {count_clicks(link_components, token)}")
         except requests.exceptions.HTTPError as error:
             exit("Error:\n{0}".format(error))
     else:
