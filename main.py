@@ -21,8 +21,9 @@ def shorten_link(link, token):
 
 
 def count_clicks(bitlink, token):
-    url = 'https://api-ssl.bitly.com/v4/bitlinks/\
-{0}/clicks/summary'.format(bitlink)
+    url = "https://api-ssl.bitly.com/v4/bitlinks/{0}/clicks/summary".format(
+        bitlink
+    )
     headers = {
         'Authorization': token
     }
