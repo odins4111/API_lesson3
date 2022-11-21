@@ -9,7 +9,7 @@ import argparse
 def shorten_link(link, token):
     url = 'https://api-ssl.bitly.com/v4/shorten'
     headers = {
-        'Authorization': token
+        'Authorization': f"Bearer {token}"
     }
     payload = {
         "long_url": link
@@ -25,7 +25,7 @@ def count_clicks(bitlink, token):
         bitlink
     )
     headers = {
-        'Authorization': token
+        'Authorization': f"Bearer {token}"
     }
     response = requests.get(url, headers=headers)
     response.raise_for_status()
@@ -35,7 +35,7 @@ def count_clicks(bitlink, token):
 def is_bitlink(url, token):
     url = 'https://api-ssl.bitly.com/v4/bitlinks/{0}'.format(url)
     headers = {
-        'Authorization': token
+        'Authorization': f"Bearer {token}"
     }
     response = requests.get(url, headers=headers)
     return response.ok
