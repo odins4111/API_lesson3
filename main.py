@@ -4,6 +4,7 @@ import json
 from urllib.parse import urlparse
 from dotenv import load_dotenv
 import argparse
+import sys
 
 
 def shorten_link(link, token):
@@ -52,18 +53,15 @@ def main():
     else:
         link = input("Input link - ")
     token = os.getenv('BITLY_TOKEN')
-    link_components = urlparse(link)
-    link_components = f"{link_components.netloc}{link_components.path}"
-    if is_bitlink(link_components, token):
-        try:
+    link_parse = urlparse(link)
+    link_components = f"{link_parse.netloc}{link_parse.path}"
+    try:
+        if is_bitlink(link_components, token):
             print(f"Кол-во кликов - {count_clicks(link_components, token)}")
-        except requests.exceptions.HTTPError as error:
-            exit("Error:\n{0}".format(error))
-    else:
-        try:
+        else:
             print(shorten_link(link, token))
-        except requests.exceptions.HTTPError as error:
-            exit("Error:\n{0}".format(error))
+    except requests.exceptions.HTTPError as error:
+        sys.exit("Вы ввели неправильную ссылку или неверный токен.")
 
 
 if __name__ == '__main__':
