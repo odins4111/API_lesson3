@@ -43,6 +43,7 @@ def is_bitlink(url, token):
 
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description='short links bitly'
     )
@@ -53,11 +54,11 @@ def main():
     else:
         link = input("Input link - ")
     token = os.getenv('BITLY_TOKEN')
-    link_parse = urlparse(link)
-    link_components = f"{link_parse.netloc}{link_parse.path}"
+    link_components = urlparse(link)
+    link_short = f"{link_components.netloc}{link_components.path}"
     try:
-        if is_bitlink(link_components, token):
-            print(f"Кол-во кликов - {count_clicks(link_components, token)}")
+        if is_bitlink(link_short, token):
+            print(f"Кол-во кликов - {count_clicks(link_short, token)}")
         else:
             print(shorten_link(link, token))
     except requests.exceptions.HTTPError as error:
@@ -65,5 +66,4 @@ def main():
 
 
 if __name__ == '__main__':
-    load_dotenv()
     main()
