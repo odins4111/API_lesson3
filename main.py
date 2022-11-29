@@ -55,10 +55,10 @@ def main():
         link = input("Input link - ")
     token = os.getenv('BITLY_TOKEN')
     link_components = urlparse(link)
-    link_short = f"{link_components.netloc}{link_components.path}"
+    short_link = f"{link_components.netloc}{link_components.path}"
     try:
-        if is_bitlink(link_short, token):
-            print(f"Кол-во кликов - {count_clicks(link_short, token)}")
+        if is_bitlink(short_link, token):
+            print(f"Кол-во кликов - {count_clicks(short_link, token)}")
         else:
             print(shorten_link(link, token))
     except requests.exceptions.HTTPError as error:
